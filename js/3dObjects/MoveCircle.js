@@ -3,35 +3,38 @@ class MoveCircle extends IAnimate {
     super();
     this.radius = 100
     this.reverse = false
-    this.circle = new Circle(100, 100,this.radius, "green", ctx);
+    this.circles = [
+      new Circle(100, 100,this.radius, "green", ctx),
+      new Circle(100,300,50,"orange",ctx)
+      ]
   }
-  
   
   moveCircle(){
     if(!this.reverse){
-      this.circle.position.x += 1
+      this.circles[0].position.add(Vector2.right)
     }
     else if(this.reverse){
-      this.circle.position.x -= 1
+      this.circles[0].position.add(Vector2.left)
     }
   }
+  
   checkReverse(){
-    if (this.circle.position.x >= window.innerWidth -this.radius-20){
+    if (this.circles[0].position.x >= window.innerWidth - this.radius-20){
       this.reverse=true
     }
-    else if(this.circle.position.x-this.radius <=0) {
+    
+    else if(this.circles[0].position.x - this.radius <= 0) {
       this.reverse=false
     }
   }
 
   start() {
-    this.circle.draw()
+    this.circles.forEach(x=>x.draw())
   }
 
   update() {
     this.checkReverse()
     this.moveCircle()
-    this.circle.draw();
+    this.circles.forEach(x=>x.draw())
   }
-  
 }

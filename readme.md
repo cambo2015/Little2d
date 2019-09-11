@@ -10,3 +10,6 @@
 3.  add it in the index.html fileabove index.js but below the libraries
 ### An example is in ` js/3dObjects/MoveCircle.js `
 # thats it
+
+### Slow Framerate?
+#### remove console logs from your scripts
