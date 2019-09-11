@@ -31,7 +31,13 @@ class Vector2 {
     return this.x * v2.x + this.y * v2.y
   }
   
-  distance(v2){
+  magnitude(v2){
     return Math.sqrt(this.x*this.x+this.y+this.y)
   }
+  
+  static distance(v1,v2){
+    let v3 = v2.sub(v1)
+    return v2.magnitude()
+  }
+  
 }

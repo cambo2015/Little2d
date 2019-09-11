@@ -14,4 +14,13 @@ class Circle {
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }
+  /* 
+  collision detection | circle to circle
+  radi1 + radi2 > distance between circles
+  */
+  static collision(circle1,circle2){
+    let dist = Vector2.distance(circle1.position,circle2.position)
+    let sum = circle1.radius + circle2.radius
+    return sum > dist
+  }
 }
