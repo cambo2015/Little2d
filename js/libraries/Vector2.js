@@ -30,4 +30,8 @@ class Vector2 {
   dot(v2){
     return this.x * v2.x + this.y * v2.y
   }
+  
+  distance(v2){
+    return Math.sqrt(this.x*this.x+this.y+this.y)
+  }
 }
