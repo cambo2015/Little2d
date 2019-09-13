@@ -36,7 +36,7 @@ class MoveCircle extends IAnimate {
     for(let i=0;i<this.circles.length-1;i++){
     let circle1 = this.circles[i]
     let circle2 = this.circles[i+1]
-    let collided = circle1.collision(circle2)
+    let collided = circle1.physics.collision(circle2)
     let color = (collided)?this.crclCollideColor:this.crclOriginalColor;
     circle1.setColor(color)
     

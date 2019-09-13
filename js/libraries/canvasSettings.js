@@ -7,3 +7,7 @@ ctx.canvas.fillStyle = "black";
 const clearCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
+
+const canvasBounds = ()=>{
+  return new Vector2(window.innerWidth,window.innerHeight)
+}

@@ -61,4 +61,10 @@ class Vector2 {
     let ans = Math.sqrt(x*x+y*y)
     return ans
   }
+  
+  static angle(angle){
+    let toRadians = (a)=>a*Math.PI/180
+    angle = toRadians(angle)
+    return new Vector2(Math.cos(angle),Math.sin(angle))
+  }
 }

@@ -1,5 +1,6 @@
 const classes = [
-  new MoveCircle(ctx)
+  new MoveCircle(ctx),
+  //new OppositeDirectionPage(ctx)
   
   ];
 

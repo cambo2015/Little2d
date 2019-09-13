@@ -6,7 +6,7 @@ class Circle {
     this.color = color;
     this.ctx = ctx;
     this.collided = false
-    
+    this.physics = new CirclePhysics(this,200)
   }
   
   draw() {
@@ -31,7 +31,7 @@ class Circle {
   collision detection | circle to circle
   radi1 + radi2 > distance between circles
   */
-  collision(circle){
+  /*collision(circle){
     let dist = Vector2.distance(this.position,circle.getPosition())
     let sum = this.radius + circle.getRadius()
     let ans =  sum > dist
@@ -39,5 +39,5 @@ class Circle {
       this.position.sub(new Vector2(1,0))
     }
     return ans
-  }
+  }*/
 }
