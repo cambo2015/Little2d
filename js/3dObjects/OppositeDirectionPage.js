@@ -18,9 +18,10 @@ class Explosion  extends IAnimate{
   
   explode(){
     this.props.circles.forEach((x,i)=>{
+      const speed = randomRange(5,100)
       let dir = x.getDirection()
-      x.position.x += dir.x*Math.random()*.5
-      x.position.y += dir.y*Math.random()*.5
+      x.position.x += dir.x*speed
+      x.position.y += dir.y*speed
     })
   }
   
@@ -34,7 +35,7 @@ class MultiCircleProps{
     this.radius = 1
     this.originalColor = "green"
     this.changeColor = "red"
-    this.maxCircles = 1000
+    this.maxCircles = 100
     this.circles = []
     this.ctx= ctx
   }
