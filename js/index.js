@@ -10,6 +10,9 @@ const start = () => {
 };
 
 const update = () => {
+  timeCurrent = Date.now()
+  timeEllapsed = (timeCurrent - timeStart)/FPS;
+  timeStart = timeCurrent;
   setTimeout(() => {
     clearCanvas()
     window.requestAnimationFrame(update)

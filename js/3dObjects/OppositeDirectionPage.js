@@ -18,10 +18,9 @@ class Explosion  extends IAnimate{
   
   explode(){
     this.props.circles.forEach((x,i)=>{
-      const speed = randomRange(5,100)
       let dir = x.getDirection()
-      x.position.x += dir.x*speed
-      x.position.y += dir.y*speed
+      x.position.x += dir.x*x.speed
+      x.position.y += dir.y *x.speed 
     })
   }
   
