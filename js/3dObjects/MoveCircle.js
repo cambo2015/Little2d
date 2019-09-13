@@ -3,10 +3,13 @@ class MoveCircle extends IAnimate {
     super();
     this.radius = 100
     this.reverse = false
+    this.crclOrginalColor = "green"
+    this.crclCollideColor= "red"
     this.circles = [
-      new Circle(100, 100,this.radius, "green", ctx),
-      new Circle(100,300,50,"orange",ctx)
+      new Circle(100, 100,this.radius, this.crclOrginalColor, ctx),
+      new Circle(100,100,50,this.crclOrginalColor,ctx)
       ]
+      
   }
   
   moveCircle(){
@@ -27,7 +30,21 @@ class MoveCircle extends IAnimate {
       this.reverse=false
     }
   }
-
+  
+  
+  collisionCheck(){
+    //first circle
+    try{
+    this.circles[0].setColor(this.circles[0].collision(this.circles[1])?this.crclCollideColor:this.crclOrginalColor)
+    //second circle
+    this.circles[1].color = 
+    (this.circle[1].collision(
+      this.circles[0]))? this.crclCollideColor:this.crclOrginalColor
+    }catch(e){
+      console.log(e)
+    }
+  }
+  
   start() {
     this.circles.forEach(x=>x.draw())
   }
@@ -35,6 +52,7 @@ class MoveCircle extends IAnimate {
   update() {
     this.checkReverse()
     this.moveCircle()
+   // this.collisionCheck()
     this.circles.forEach(x=>x.draw())
   }
 }
