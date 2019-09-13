@@ -1,0 +1,1 @@
+const pnt = (x)=>console.log(x)

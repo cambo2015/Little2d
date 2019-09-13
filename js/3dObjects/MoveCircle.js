@@ -1,23 +1,23 @@
 class MoveCircle extends IAnimate {
   constructor(ctx) {
     super();
-    this.radius = 100
+    this.radius = 50
     this.reverse = false
     this.crclOrginalColor = "green"
     this.crclCollideColor= "red"
     this.circles = [
       new Circle(100, 100,this.radius, this.crclOrginalColor, ctx),
-      new Circle(100,100,50,this.crclOrginalColor,ctx)
+      new Circle(250,100,50,this.crclOrginalColor,ctx)//,
+      //new Circle(300,100,this.radius,this.crclOriginalColor,ctx)
       ]
-      
   }
   
   moveCircle(){
     if(!this.reverse){
-      this.circles[0].position.add(Vector2.right)
+      this.circles[0].position.add(Vector2.right())
     }
     else if(this.reverse){
-      this.circles[0].position.add(Vector2.left)
+      this.circles[0].position.add(Vector2.left())
     }
   }
   
@@ -31,17 +31,15 @@ class MoveCircle extends IAnimate {
     }
   }
   
-  
   collisionCheck(){
     //first circle
-    try{
-    this.circles[0].setColor(this.circles[0].collision(this.circles[1])?this.crclCollideColor:this.crclOrginalColor)
-    //second circle
-    this.circles[1].color = 
-    (this.circle[1].collision(
-      this.circles[0]))? this.crclCollideColor:this.crclOrginalColor
-    }catch(e){
-      console.log(e)
+    for(let i=0;i<this.circles.length-1;i++){
+    let circle1 = this.circles[i]
+    let circle2 = this.circles[i+1]
+    let collided = circle1.collision(circle2)
+    let color = (collided)?this.crclCollideColor:this.crclOriginalColor;
+    circle1.setColor(color)
+    
     }
   }
   
@@ -51,8 +49,8 @@ class MoveCircle extends IAnimate {
 
   update() {
     this.checkReverse()
+    this.collisionCheck()
     this.moveCircle()
-   // this.collisionCheck()
     this.circles.forEach(x=>x.draw())
   }
 }

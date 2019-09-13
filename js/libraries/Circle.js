@@ -6,8 +6,9 @@ class Circle {
     this.color = color;
     this.ctx = ctx;
     this.collided = false
-    this.collision.bind(this)
+    
   }
+  
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
@@ -16,6 +17,13 @@ class Circle {
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }
+  
+  getPosition(){return this.position}
+  setPosition(x,y){
+    this.position.x = x
+    this.position.y = y
+  }
+  getRadius(){return this.radius}
   getColor(){return this.color}
   setColor(value){this.color = value}
   
@@ -24,8 +32,12 @@ class Circle {
   radi1 + radi2 > distance between circles
   */
   collision(circle){
-    let dist = Vector2.distance(this.position,circle.position)
-    let sum = this.radius + circle.radius
-    return sum > dist
+    let dist = Vector2.distance(this.position,circle.getPosition())
+    let sum = this.radius + circle.getRadius()
+    let ans =  sum > dist
+    if (ans===true){
+      this.position.sub(new Vector2(1,0))
+    }
+    return ans
   }
 }
