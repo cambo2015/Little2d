@@ -1,6 +1,6 @@
 const classes = [
   //new MoveCircle(ctx),
-  new OppositeDirectionPage(ctx)
+  new Explosion(ctx)
   
   ];
 
