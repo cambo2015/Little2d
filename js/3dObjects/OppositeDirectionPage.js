@@ -4,7 +4,6 @@ class OppositeDirectionPage  extends IAnimate{
     super()
     this.ctx = ctx
     this.props = new MultiCircleProps(ctx)
-    
   }
   
   start(){
