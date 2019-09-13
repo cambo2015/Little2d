@@ -1,7 +1,7 @@
 class World extends Circle{
   
-  constructor(x,y,r,color,ctx){
-    super(x,y,r,color,ctx)
+  constructor(x,y,r,ctx){
+    super(x,y,r,randomColor(),ctx)
     this.direction = Vector2.angle(Math.random()*360)
     this.speed = Math.random()*10
   }

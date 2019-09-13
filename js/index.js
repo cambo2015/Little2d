@@ -1,5 +1,5 @@
 const classes = [
-  //new MoveCircle(ctx),
+  new MoveCircle(ctx),
   new Explosion(ctx)
   
   ];

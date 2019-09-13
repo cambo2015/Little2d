@@ -34,14 +34,14 @@ class MultiCircleProps{
     this.radius = 1
     this.originalColor = "green"
     this.changeColor = "red"
-    this.maxCircles = 100
+    this.maxCircles = 1000
     this.circles = []
     this.ctx= ctx
   }
   
   create(){
     for(let i=0;i<this.maxCircles;i++){
-      this.circles.push(new World(window.innerWidth/2,window.innerHeight/2,this.radius,this.originalColor,this.ctx)
+      this.circles.push(new World(window.innerWidth/2,window.innerHeight/2,this.radius,this.ctx)
       )
     }
   }
