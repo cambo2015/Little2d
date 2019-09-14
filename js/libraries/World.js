@@ -1,4 +1,4 @@
-class World extends Circle{
+class FireworkParticle extends Circle{
   
   constructor(x,y,r,ctx){
     super(x,y,r,randomColor(),ctx)

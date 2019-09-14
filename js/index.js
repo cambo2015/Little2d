@@ -1,6 +1,6 @@
 const classes = [
   new MoveCircle(ctx),
-  new Explosion(ctx)
+  new Fireworks(ctx)
   
   ];
 
