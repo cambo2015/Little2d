@@ -42,9 +42,9 @@ class Fireworks  extends IAnimate{
   changeMagnitude(){
     this.props.particles.forEach(x=>{
       let dir = x.getDirection()
-      let reverse = .1//this.reverseSlider.value/10
-        x.position.x *= (reverse*-1*dir.x)
-        x.position.y *= (reverse *-1*dir.x)
+      let reverse = .8//this.reverseSlider.value/10
+        x.position.x *= (reverse)
+        x.position.y *= (reverse)
       
     })
   }
