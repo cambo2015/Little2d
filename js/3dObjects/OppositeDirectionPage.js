@@ -5,31 +5,47 @@ class Fireworks  extends IAnimate{
     this.ctx = ctx
     this.props = new MultiCircleProps(ctx)
     this.reverse = false
+    this.speedSlider = document.getElementById("speed")
+    this.reverseButton = document.getElementById("reverse")
+    
   }
   
   start(){
     this.props.create()
+    this.reverseButton.onclick = ()=>{
+      this.reverse = !this.reverse
+    }
   }
   
   update(){
-    
     this.explode()
+    if(this.reverse){
+      this.changeMagnitude()
+    }
+    
     this.props.particles.forEach(x=>x.draw())
+    //this.props.zoom(this.reverseSlider.value/10)
   }
   
   explode(){
     this.props.particles.forEach((x,i)=>{
       let dir = x.getDirection()
-      const slider = document.getElementById("speed")
-      const reverseSlider = document.getElementById("reverse")
-      let speed = slider.value
-      let reverse = reverseSlider.value/10
-      //push x and y forward
-      x.position.x += (dir.x*x.speed*speed)
-      x.position.y += (dir.y *x.speed*speed)
-      //change the magnitude/length of vector
-      x.position.x /= (reverse*-1*dir.x)
-      x.position.y /= (reverse *-1*dir.x)
+      //const slider = document.getElementById("speed")
+      
+      let speed = this.speedSlider.value
+      //push particles forward
+      x.position.x += (dir.x*x.speed*speed*.001)
+      x.position.y += (dir.y *x.speed*speed*.001)
+    })
+  }
+  
+  changeMagnitude(){
+    this.props.particles.forEach(x=>{
+      let dir = x.getDirection()
+      let reverse = .1//this.reverseSlider.value/10
+        x.position.x *= (reverse*-1*dir.x)
+        x.position.y *= (reverse *-1*dir.x)
+      
     })
   }
   
@@ -53,5 +69,9 @@ class MultiCircleProps{
       this.particles.push(new FireworkParticle(0,0,this.radius,this.ctx)
       )
     }
+  }
+  zoom(value){
+    
+    this.particles.forEach(x=>x.setRadius(value))
   }
 }
