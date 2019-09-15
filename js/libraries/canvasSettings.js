@@ -1,11 +1,18 @@
+const CANVASCOLOR = "black"
+const bounds ={x:-window.innerWidth,y:-window.innerHeight}
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
-ctx.canvas.fillStyle = "black";
+ctx.canvas.width = bounds.x*-1;
+ctx.canvas.height = bounds.y*-1;
+ctx.translate((bounds.x*-1)/2,(bounds.y*-1)/2)
+ctx.fillStyle = CANVASCOLOR;
+ctx.fillRect(-bounds.x,-bounds.y,canvas.width,canvas.height)
 
 const clearCanvas = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.fillStyle = CANVASCOLOR
+  ctx.clearRect(bounds.x, bounds.y, canvas.width, canvas.height);
+  ctx.fillRect(bounds.x,bounds.y,Math.pow(canvas.width,2),Math.pow(canvas.height,2))
 };
 
 const canvasBounds = ()=>{

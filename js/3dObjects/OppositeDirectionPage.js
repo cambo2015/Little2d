@@ -4,6 +4,7 @@ class Fireworks  extends IAnimate{
     super()
     this.ctx = ctx
     this.props = new MultiCircleProps(ctx)
+    this.reverse = false
   }
   
   start(){
@@ -13,14 +14,22 @@ class Fireworks  extends IAnimate{
   update(){
     
     this.explode()
-    this.props.circles.forEach(x=>x.draw())
+    this.props.particles.forEach(x=>x.draw())
   }
   
   explode(){
-    this.props.circles.forEach((x,i)=>{
+    this.props.particles.forEach((x,i)=>{
       let dir = x.getDirection()
-      x.position.x += dir.x*x.speed
-      x.position.y += dir.y *x.speed 
+      const slider = document.getElementById("speed")
+      const reverseSlider = document.getElementById("reverse")
+      let speed = slider.value
+      let reverse = reverseSlider.value/10
+      //push x and y forward
+      x.position.x += (dir.x*x.speed*speed)
+      x.position.y += (dir.y *x.speed*speed)
+      //change the magnitude/length of vector
+      x.position.x /= (reverse*-1*dir.x)
+      x.position.y /= (reverse *-1*dir.x)
     })
   }
   
@@ -35,13 +44,13 @@ class MultiCircleProps{
     this.originalColor = "green"
     this.changeColor = "red"
     this.maxCircles = 100
-    this.circles = []
+    this.particles = []
     this.ctx= ctx
   }
   
   create(){
     for(let i=0;i<this.maxCircles;i++){
-      this.circles.push(new FireworkParticle(window.innerWidth/2,window.innerHeight/2,this.radius,this.ctx)
+      this.particles.push(new FireworkParticle(0,0,this.radius,this.ctx)
       )
     }
   }
