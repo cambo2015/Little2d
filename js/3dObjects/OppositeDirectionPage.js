@@ -1,3 +1,4 @@
+
 class Fireworks  extends IAnimate{
   
   constructor(ctx){
@@ -7,7 +8,9 @@ class Fireworks  extends IAnimate{
     this.reverse = false
     this.speedSlider = document.getElementById("speed")
     this.reverseButton = document.getElementById("reverse")
-    
+    this.zoomVal = .01
+    this.zoomSlider = document.getElementById("zoom-slider")
+    this.scale = .001
   }
   
   start(){
@@ -22,9 +25,9 @@ class Fireworks  extends IAnimate{
     if(this.reverse){
       this.changeMagnitude()
     }
-    
+    //this.props.zoom(this.scale+=.001)
     this.props.particles.forEach(x=>x.draw())
-    //this.props.zoom(this.reverseSlider.value/10)
+    
   }
   
   explode(){
@@ -34,19 +37,20 @@ class Fireworks  extends IAnimate{
       
       let speed = this.speedSlider.value
       //push particles forward
-      x.position.x += (dir.x*x.speed*speed*.001)
-      x.position.y += (dir.y *x.speed*speed*.001)
+      x.position.x += (dir.x*x.speed*speed*this.scale)
+      x.position.y += (dir.y *x.speed*speed*this.scale)
     })
   }
   
   changeMagnitude(){
     this.props.particles.forEach(x=>{
       let dir = x.getDirection()
-      let reverse = .8//this.reverseSlider.value/10
+      let reverse = .9//this.zoomSlider.value/10//this.reverseSlider.value/10
         x.position.x *= (reverse)
         x.position.y *= (reverse)
-      
+        x.setRadius(.1)
     })
+    
   }
   
   changeBounds(){
@@ -56,7 +60,7 @@ class Fireworks  extends IAnimate{
 
 class MultiCircleProps{
   constructor(ctx){
-    this.radius = 3
+    this.radius = .1
     this.originalColor = "green"
     this.changeColor = "red"
     this.maxCircles = 100
@@ -70,8 +74,8 @@ class MultiCircleProps{
       )
     }
   }
+  
   zoom(value){
-    
     this.particles.forEach(x=>x.setRadius(value))
   }
 }
