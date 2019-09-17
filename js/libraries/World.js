@@ -2,9 +2,13 @@ class FireworkParticle extends Circle{
   
   constructor(x,y,r,ctx){
     super(x,y,r,randomColor2(colorScheme.first),ctx)
+    this._originalPosition = new Vector2(x,y)
     this.direction = Vector2.angle(Math.random()*360)
     this.speed = Math.random()*10
     this.mass = Math.pow(6.2,10*23)
+  }
+  get originalPosition(){
+    return this._originalPosition
   }
   getDirection(){return this.direction}
   setDirection(value){ this.direction = value}

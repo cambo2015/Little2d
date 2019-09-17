@@ -6,7 +6,8 @@ const randomRange =(min, max) =>{
 }
 
 const random = (max)=>{
-  return Math.floor(Math.random()*max)
+  let a = Math.floor(Math.random()*max)
+  return a
 }
 
 const colorScheme = {

@@ -48,8 +48,21 @@ class Vector2 {
     return this;
   }
   
+  //more like multiply function
   scale(scaler){
     return new Vector2(this._x*scaler,this._y*scaler)
+  }
+  equals(v2){
+    return (v2.x === this._x && v2.y === this._y)
+  }
+  greaterThan(v2){
+    return (this._x>v2.x &&this._y>v2.y)
+  }
+  
+  //t must be between 0 and 1
+  lerp(toLocation,t){
+    this._x = (1-t)*this._x+t*toLocation.x
+    this._y = (1-t)*this._y+t*toLocation.y
   }
   
   dot(v2){
@@ -77,4 +90,6 @@ class Vector2 {
     angle = toRadians(angle)
     return new Vector2(Math.cos(angle),Math.sin(angle))
   }
+  
+  
 }

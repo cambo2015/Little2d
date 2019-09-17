@@ -28,7 +28,6 @@ class Fireworks  extends IAnimate{
     //this.props.particles.forEach(x=>x.attract(this.props.particles))
    // this.props.zoom(this.scale+=.1)
     this.props.particles.forEach(x=>x.draw())
-    
   }
   
   explode(){
@@ -41,18 +40,23 @@ class Fireworks  extends IAnimate{
       //particle.position.x += (dir.x*particle.speed*slider*this.scale)
       //particle.position.y += (dir.y *particle.speed*slider*this.scale)
       const movement = new Vector2(
-        dir.x/**particle.speed*slider*this.scale*/,dir.y/**particle.speed*slider*this.scale*/).scale(particle.speed*slider*this.scale)
+        dir.x,dir.y).mult(particle.speed*slider*this.scale)
       particle.position.add(movement)
-      //.mult(particle.speed*slider*this.scale)
     })
   }
   
   changeMagnitude(){
-    this.props.particles.forEach(x=>{
-      let dir = x.getDirection()
-      let reverse = .9//this.zoomSlider.value/10//this.reverseSlider.value/10
-        x.position.mult(reverse)
-        x.setRadius(5)
+    let t=0
+    this.props.particles.forEach(circle=>{
+      let dir = circle.getDirection()
+      let reverse = .9
+     if (t<1){
+       t+=.001
+       circle.position.lerp(circle.originalPosition,t)
+     }
+        //circle.position.mult(reverse)
+        circle.setRadius(5)
+        
     })
     
   }
