@@ -41,12 +41,13 @@ class Vector2 {
     return this
   }
 
-  //not working
+
   mult(scaler) {
     this._x *= scaler;
     this._y *= scaler;
     return this;
   }
+  
   scale(scaler){
     return new Vector2(this._x*scaler,this._y*scaler)
   }
