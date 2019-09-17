@@ -5,59 +5,68 @@ class Vector2 {
   static right(){return new Vector2(1,0)}
   
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    this._x = x;
+    this._y = y;
   }
   
-  getX(){
-    return this.x
+  get x(){
+    return this._x
     
   }
-  setX(value){
-    this.x = value
+  set x(value){
+    this._x = value
+  }
+  
+  get y(){
+    return this._y
     
   }
   
-  getY(){
-    return this.y
-    
-  }
-  
-  setY(value){
-    this.y = value
+  set y(value){
+    this._y = value
     
   }
 
+  
   add(v2) {
-    this.x = this.x + v2.getX();
-    this.y = this.y + v2.getY();
+    this._x += v2.x;
+    this._y += v2.y;
+    return this
   }
 
+  
   sub(v2) {
-    //console.log(v2.getX())
-    this.x = this.x - v2.getX();
-    this.y = this.y - v2.getY();
-    
+    this._x -=  v2.x;
+    this._y -=  v2.y;
+    return this
   }
 
+  //not working
   mult(scaler) {
-    this.x * scaler;
-    this.y * scaler;
+    this._x *= scaler;
+    this._y *= scaler;
     return this;
+  }
+  scale(scaler){
+    return new Vector2(this._x*scaler,this._y*scaler)
   }
   
   dot(v2){
-    return this.x * v2.x + this.y * v2.y
+    return this._x * v2.x + this._y * v2.y
   }
   
   magnitude(){
-    let ans =  Math.sqrt(this.x*this.x+this.y+this.y)
+    let ans =  Math.sqrt(this._x*this._x+this._y+this._y)
     return ans
   }
   
+  static normalize(v2){
+    return new Vector2(v2.x/v2.magnitude(),v2.y/v2.magnitude())
+  }
+  
   static distance(v1,v2){
-    let x = v2.getX()-v1.getX()
-    let y = v2.getY()-v1.getY()
+    let x = v2.x()-v1.x()
+    let y = v2.y()-v1.y()
     let ans = Math.sqrt(x*x+y*y)
     return ans
   }

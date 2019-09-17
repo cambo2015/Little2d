@@ -5,6 +5,11 @@ class CirclePhysics{
     this.collided = false
   }
   
+  addForce(vec2){
+    circle.position.x += vec2.x
+    circle.position.y += vec2.y
+  }
+  
   //causes error
   //get mass(){return this.mass}
   //set mass(value){this.mass = value}

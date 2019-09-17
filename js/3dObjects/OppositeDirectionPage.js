@@ -10,7 +10,7 @@ class Fireworks  extends IAnimate{
     this.reverseButton = document.getElementById("reverse")
     this.zoomVal = .01
     this.zoomSlider = document.getElementById("zoom-slider")
-    this.scale = .001
+    this.scale = .1
   }
   
   start(){
@@ -25,20 +25,25 @@ class Fireworks  extends IAnimate{
     if(this.reverse){
       this.changeMagnitude()
     }
-    //this.props.zoom(this.scale+=.001)
+    //this.props.particles.forEach(x=>x.attract(this.props.particles))
+   // this.props.zoom(this.scale+=.1)
     this.props.particles.forEach(x=>x.draw())
     
   }
   
   explode(){
-    this.props.particles.forEach((x,i)=>{
-      let dir = x.getDirection()
+    this.props.particles.forEach((particle,i)=>{
+      let dir = particle.getDirection()
       //const slider = document.getElementById("speed")
       
-      let speed = this.speedSlider.value
+      let slider = this.speedSlider.value
       //push particles forward
-      x.position.x += (dir.x*x.speed*speed*this.scale)
-      x.position.y += (dir.y *x.speed*speed*this.scale)
+      //particle.position.x += (dir.x*particle.speed*slider*this.scale)
+      //particle.position.y += (dir.y *particle.speed*slider*this.scale)
+      const movement = new Vector2(
+        dir.x/**particle.speed*slider*this.scale*/,dir.y/**particle.speed*slider*this.scale*/).scale(particle.speed*slider*this.scale)
+      particle.position.add(movement)
+      //.mult(particle.speed*slider*this.scale)
     })
   }
   
@@ -46,9 +51,8 @@ class Fireworks  extends IAnimate{
     this.props.particles.forEach(x=>{
       let dir = x.getDirection()
       let reverse = .9//this.zoomSlider.value/10//this.reverseSlider.value/10
-        x.position.x *= (reverse)
-        x.position.y *= (reverse)
-        x.setRadius(.1)
+        x.position.mult(reverse)
+        x.setRadius(5)
     })
     
   }
@@ -60,7 +64,7 @@ class Fireworks  extends IAnimate{
 
 class MultiCircleProps{
   constructor(ctx){
-    this.radius = .1
+    this.radius = 5
     this.originalColor = "green"
     this.changeColor = "red"
     this.maxCircles = 100
@@ -70,7 +74,7 @@ class MultiCircleProps{
   
   create(){
     for(let i=0;i<this.maxCircles;i++){
-      this.particles.push(new FireworkParticle(0,0,this.radius,this.ctx)
+      this.particles.push(new FireworkParticle(random(100),random(100),this.radius,this.ctx)
       )
     }
   }
