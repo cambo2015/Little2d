@@ -6,7 +6,7 @@ class Circle {
     this._color = color;
     this._ctx = ctx;
     this._collided = false
-    this._physics = new CirclePhysics(this,200)
+    //this._physics = new CirclePhysics(this,200)
   }
   
   draw() {

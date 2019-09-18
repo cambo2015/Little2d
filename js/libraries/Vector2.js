@@ -1,31 +1,20 @@
 class Vector2 {
+  
   static up()   {return new Vector2(0,1)}
   static down() {return new Vector2(0,-1)}
   static left() {return new Vector2(-1,0)}
   static right(){return new Vector2(1,0)}
+  static zero() {return new Vector2(0,0)}
   
   constructor(x, y) {
     this._x = x;
     this._y = y;
   }
   
-  get x(){
-    return this._x
-    
-  }
-  set x(value){
-    this._x = value
-  }
-  
-  get y(){
-    return this._y
-    
-  }
-  
-  set y(value){
-    this._y = value
-    
-  }
+  get x(){return this._x}
+  set x(value){ this._x = value}
+  get y(){return this._y}
+  set y(value){this._y = value}
 
   
   add(v2) {

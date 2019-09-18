@@ -1,8 +1,9 @@
 class CirclePhysics{
   constructor(circle,mass){
-    this.circle = circle
-    this.mass = mass
-    this.collided = false
+    this._circle = circle
+    this._mass = mass
+    this._collided = false
+    this._acceleration = Vector2.zero()
   }
   
   addForce(vec2){
@@ -10,10 +11,14 @@ class CirclePhysics{
     circle.position.y += vec2.y
   }
   
-  //causes error
-  //get mass(){return this.mass}
-  //set mass(value){this.mass = value}
+  get mass(){return this._mass}
+  get collided(){return this._collided}
+  get acceleration(){return this._acceleration}
   
+  accelerate(vector2){
+    this._acceleration.add(vector2)
+    this._circle.position.add(this._acceleration)
+  }
   
   collision(circle){
     let dist = Vector2.distance(this.circle.position,circle.getPosition())
@@ -22,13 +27,12 @@ class CirclePhysics{
     if (ans===true){
       this.circle.position.sub(new Vector2(1,0))
     }
+    
     return ans
   }
   
   static gravity(circle1,circle2){
     let m1 = circle1.physics.mass
     let m2 = circle2.physics.mass
-    
   }
-  
 }
