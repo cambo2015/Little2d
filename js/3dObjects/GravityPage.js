@@ -16,9 +16,8 @@ class GravityPage extends IAnimate{
   }
   update(){
     this.circles.forEach(planet=>{
-      while(true){
-        planet.position.mult(2)
-      }
+        planet.accel(Vector2.left().scale(.1))
+        
     })
     this.circles.forEach(x=>x.draw())
   }
