@@ -1,31 +1,32 @@
 class Circle {
   constructor(x, y, r, color, ctx) {
-    this.ctx = ctx;
-    this.position = new Vector2(x, y);
-    this.radius = r;
-    this.color = color;
-    this.ctx = ctx;
-    this.collided = false
-    this.physics = new CirclePhysics(this,200)
+    this._ctx = ctx;
+    this._position = new Vector2(x, y);
+    this._radius = r;
+    this._color = color;
+    this._ctx = ctx;
+    this._collided = false
+    this._physics = new CirclePhysics(this,200)
   }
   
   draw() {
-    this.ctx.beginPath();
-    this.ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
-    this.ctx.strokeStyle = this.color;
-    this.ctx.stroke();
-    this.ctx.fillStyle = this.color;
-    this.ctx.fill();
+    this._ctx.beginPath();
+    this._ctx.arc(this._position.x, this._position.y, this._radius, 0, 2 * Math.PI);
+    this._ctx.strokeStyle = this._color;
+    this._ctx.stroke();
+    this._ctx.fillStyle = this._color;
+    this._ctx.fill();
   }
   
-  getPosition(){return this.position}
-  setPosition(x,y){
-    this.position.x = x
-    this.position.y = y
+  get position(){return this._position}
+  set position(vec2){
+    this._position.x = vec2.x
+    this._position.y = vec2.y
   }
-  getRadius(){return this.radius}
-  getColor(){return this.color}
-  setColor(value){this.color = value}
+  get radius(){return this._radius}
+  set radius(value){this._radius = value}
+  get color(){return this._color}
+  set color(value){this._color = value}
   
   /* 
   collision detection | circle to circle

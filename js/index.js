@@ -1,13 +1,14 @@
 const classes = [
  // new MoveCircle(ctx),
   //new Fireworks(ctx)
-  new LerpPage(ctx)
-  
+  //new LerpPage(ctx)
+  new GravityPage(ctx)
   ];
 let speed = 0
 const onSpeedChange=(e)=>{
   speed+= e
 }
+
 const FPS = 60;
 const start = () => {
   if (classes.length > 0) classes.forEach(x => x.start());

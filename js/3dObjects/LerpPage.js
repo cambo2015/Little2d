@@ -29,14 +29,14 @@ class LerpPage extends IAnimate{
   }
   
   halve(arr){
-    if(arr.length<2){
-      return arr
+    if(arr.length==1){
+      arr[0].draw()
+      return
     }
-    let first = arr.slice(0,arr.length/2)
-    let second = arr.slice(arr.length/2,arr.length)
+    let first = arr.splice(0,arr.length/2)
+    let second = arr.splice(arr.length/2-1,arr.length)
     this.halve(first)
     this.halve(second)
-    arr[0].draw()
-    //arr[0].position.lerp(new Vector2(0,0),this.t+=.001)
+    //arr1[0].position.lerp(new Vector2(0,0),this.t+=.001)
   }
 }
