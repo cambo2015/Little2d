@@ -1,4 +1,6 @@
 class CirclePhysics{
+  static GRAVITY(){return 9.8}
+  
   constructor(circle,mass){
     this._circle = circle
     this._mass = mass
@@ -27,12 +29,14 @@ class CirclePhysics{
     if (ans===true){
       this.circle.position.sub(new Vector2(1,0))
     }
-    
     return ans
   }
   
-  static gravity(circle1,circle2){
+  //returns the Force as a float
+  static gravityFormula(circle1,circle2){
     let m1 = circle1.physics.mass
     let m2 = circle2.physics.mass
+    let dist = Vector2.distance(circle1.position,circle2.position)
+    return (m1*m2)/(dist*dist)
   }
 }

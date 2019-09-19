@@ -5,6 +5,9 @@ class Vector2 {
   static left() {return new Vector2(-1,0)}
   static right(){return new Vector2(1,0)}
   static zero() {return new Vector2(0,0)}
+  static identity(){
+    return new Vector2(1,1)
+  }
   
   constructor(x, y) {
     this._x = x;
@@ -16,14 +19,12 @@ class Vector2 {
   get y(){return this._y}
   set y(value){this._y = value}
 
-  
   add(v2) {
     this._x += v2.x;
     this._y += v2.y;
     return this
   }
 
-  
   sub(v2) {
     this._x -=  v2.x;
     this._y -=  v2.y;
@@ -41,9 +42,11 @@ class Vector2 {
   scale(scaler){
     return new Vector2(this._x*scaler,this._y*scaler)
   }
+  
   equals(v2){
     return (v2.x === this._x && v2.y === this._y)
   }
+  
   greaterThan(v2){
     return (this._x>v2.x &&this._y>v2.y)
   }
@@ -63,22 +66,35 @@ class Vector2 {
     return ans
   }
   
-  static normalize(v2){
+  normalize(){
+    let n = Vector2.normalized(this)
+    this._x = n.x
+    this._y = n.y
+    return this
+  }
+  
+  static normalized(v2){
     return new Vector2(v2.x/v2.magnitude(),v2.y/v2.magnitude())
   }
   
   static distance(v1,v2){
-    let x = v2.x()-v1.x()
-    let y = v2.y()-v1.y()
-    let ans = Math.sqrt(x*x+y*y)
+    let d = Vector2.direction(v1,v2)
+    let ans = Math.sqrt(d.x*d.x+d.y*d.y)
     return ans
   }
   
-  static angle(angle){
+  static direction(v1,v2){
+    return new Vector2(
+      v2.x-v1.x,
+      v2.y-v1.y
+      )
+  }
+  
+  static toAngle(angle){
     let toRadians = (a)=>a*Math.PI/180
     angle = toRadians(angle)
     return new Vector2(Math.cos(angle),Math.sin(angle))
   }
   
-  
+  static angleOf(vector2){return Math.atan2(vector2.y,vector2.x)}
 }
