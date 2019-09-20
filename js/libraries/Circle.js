@@ -27,7 +27,8 @@ class Circle {
   set radius(value){this._radius = value}
   get color(){return this._color}
   set color(value){this._color = value}
-  
+  get collided(){return this._collided}
+  set collided(value){this._collided = value}
   /* 
   collision detection | circle to circle
   radi1 + radi2 > distance between circles
