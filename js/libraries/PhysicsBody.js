@@ -1,6 +1,6 @@
 class CirclePhysics{
   static GRAVITY(){return 9.8}
-  
+  static G (){return 6.67}
   constructor(circle,mass){
     this._circle = circle
     this._mass = mass

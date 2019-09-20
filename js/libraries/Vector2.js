@@ -62,7 +62,7 @@ class Vector2 {
   }
   
   magnitude(){
-    let ans =  Math.sqrt(this._x*this._x+this._y+this._y)
+    let ans =  Math.sqrt(this._x*this._x+this._y*this._y)
     return ans
   }
   
