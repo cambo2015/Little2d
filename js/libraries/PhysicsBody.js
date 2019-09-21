@@ -39,4 +39,6 @@ class CirclePhysics{
     let dist = Vector2.distance(circle1.position,circle2.position)
     return (m1*m2)/(dist*dist)
   }
+  
+  
 }
