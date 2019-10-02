@@ -53,8 +53,8 @@ class GravityPage extends IAnimate{
   
   onTouch(event,obj){
     const {touches} = event
-    const x = touches[0].clientX
-    const y = touches[0].clientY
+    const x = touches[0].clientX - ctx.canvas.width/2
+    const y = ctx.canvas.height/2- touches[0].clientY
     try{
       const planet = new World(x,y,5,"blue",.1,this.ctx)
      // console.log(this.planets)
