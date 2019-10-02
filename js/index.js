@@ -22,7 +22,13 @@ const update = () => {
   setTimeout(() => {
     clearCanvas()
     window.requestAnimationFrame(update)
-    if (classes.length > 0) classes.forEach(x=>x.update())
+    if (classes.length > 0){ 
+      classes.forEach(x=>{
+        x.update()
+        x.onTouch?x.onTouch():null;
+      })
+    
+    }
   }, 1000 / FPS);
 };
 
