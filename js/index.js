@@ -12,11 +12,12 @@ const onSpeedChange=(e)=>{
 const FPS = 60;
 const start = () => {
   if (classes.length > 0) {
-    classes.forEach(x => {
+    classes.forEach((x,i) => {
       x.start()
       if(x.onTouch){
-        canvas.addEventListener("touchstart",x.onTouch)
-        
+        canvas.addEventListener("touchstart",function(e){
+          x.onTouch(e,x)
+        })
       }
     });
     

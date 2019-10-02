@@ -7,8 +7,7 @@ class GravityPage extends IAnimate{
     this.sun = new World(0,0,15,"yellow",this.sunMass,ctx)
     this.planets = [new World(200,-100,5,"blue",this.planetMass,ctx)]
     this.slider = document.getElementById("speed")
-    this.speed = 1;
-    
+    this.speed = 1
     //this.circles = []
     //this.maxCircles = 10
     
@@ -38,24 +37,32 @@ class GravityPage extends IAnimate{
   
     forceVector = direction.normalize().scale(force)
     planet.position.add(forceVector.add(Vector2.left().scale(this.speed)))
-    console.log(forceVector.x)
+    
     planet.draw()
     if(dist<sun.radius){
       sun.radius += planet.radius
       planet.collided = true
     }
     }
+    
     //planet.position.add(forceVec)
     sun.draw()
+  
   })
   }
   
-  onTouch(event){
+  onTouch(event,obj){
     const {touches} = event
     const x = touches[0].clientX
     const y = touches[0].clientY
-    this.planets.push(
-      new World(x,y,5,"blue",this.planetMass,ctx)
-      )
+    try{
+      const planet = new World(x,y,5,"blue",.1,this.ctx)
+     // console.log(this.planets)
+      this.planets.push(planet)
+      
+    }
+    catch(e){
+      alert("error: "+e)
+    }
   }
 }
