@@ -41,5 +41,7 @@ const update = () => {
   }, 1000 / FPS);
 };
 
+
+
 start();
 update();

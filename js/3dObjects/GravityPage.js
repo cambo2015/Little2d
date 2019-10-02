@@ -39,6 +39,7 @@ class GravityPage extends IAnimate{
     planet.position.add(forceVector.add(Vector2.left().scale(this.speed)))
     
     planet.draw()
+    planet.drawPath()
     if(dist<sun.radius){
       sun.radius += planet.radius
       planet.collided = true
@@ -46,10 +47,13 @@ class GravityPage extends IAnimate{
     }
     
     //planet.position.add(forceVec)
+    
     sun.draw()
   
   })
   }
+  
+  
   
   onTouch(event,obj){
     const {touches} = event
