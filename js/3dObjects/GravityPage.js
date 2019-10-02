@@ -5,7 +5,7 @@ class GravityPage extends IAnimate{
     this.sunMass = 400
     this.planetMass = .1
     this.sun = new World(0,0,15,"yellow",this.sunMass,ctx)
-    this.planet = new World(200,-100,5,"blue",this.planetMass,ctx)
+    this.planets = [new World(200,-100,5,"blue",this.planetMass,ctx)]
     this.slider = document.getElementById("speed")
     this.speed = 1;
     
@@ -24,8 +24,9 @@ class GravityPage extends IAnimate{
   }
   
   update(){
-    const planet = this.planet
     const sun = this.sun
+    this.planets.forEach((planet,i)=>{
+
     let direction,dist,m1,m2,force,forceVector
     direction = Vector2.direction(planet.position,sun.position)
     dist = direction.magnitude()
@@ -46,9 +47,15 @@ class GravityPage extends IAnimate{
     }
     //planet.position.add(forceVec)
     sun.draw()
+  })
   }
   
-  onTouch(){
-    
+  onTouch(event){
+    const {touches} = event
+    const x = touches[0].clientX
+    const y = touches[0].clientY
+    this.planets.push(
+      new World(x,y,5,"blue",this.planetMass,ctx)
+      )
   }
 }
