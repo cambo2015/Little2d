@@ -2,7 +2,7 @@ class GravityPage extends IAnimate{
   constructor(ctx){
     super()
     this.ctx = ctx
-    this.sunMass = 400
+    this.sunMass = 100
     this.planetMass = .1
     this.sun = new World(0,0,15,"yellow",this.sunMass,ctx)
     this.planets = [new World(200,-100,5,"blue",this.planetMass,ctx)]

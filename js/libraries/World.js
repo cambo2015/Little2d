@@ -30,14 +30,13 @@ class World extends Circle{
         const prev = this.positions[i-1]
         this._ctx.moveTo(prev[0],prev[1]);
         this._ctx.lineTo(v[0], v[1]);
-        this._ctx.lineWidth = 5
+        this._ctx.lineWidth = 1
         this._ctx.strokeStyle = "red"
       }
       this._ctx.stroke();
-      if(this._collided){
-        this.positions = []
+      if(this._collided|| this.positions.length>50){
+        this.positions.shift()
       }
-      
     })
   }
 }
