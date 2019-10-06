@@ -2,12 +2,12 @@ class GravityPage extends IAnimate{
   constructor(ctx){
     super()
     this.ctx = ctx
-    this.sunMass = 100
+    this.sunMass = 20000
     this.planetMass = .1
     this.sun = new World(0,0,15,"yellow",this.sunMass,ctx)
     this.planets = [new World(200,-100,5,"blue",this.planetMass,ctx)]
     this.slider = document.getElementById("speed")
-    this.speed = 1
+    this.speed = 10
     //this.circles = []
     //this.maxCircles = 10
     
@@ -27,19 +27,20 @@ class GravityPage extends IAnimate{
     this.planets.forEach((planet,i)=>{
 
     let direction,dist,m1,m2,force,forceVector
+    
     direction = Vector2.direction(planet.position,sun.position)
     dist = direction.magnitude()
     if (dist>1 && !Number.isNaN(dist) && !planet.collided){
    // !Number.isNaN(dist)?console.log(dist):console.log(dist)
     m1 = sun.rigidbody.mass
     m2 = planet.rigidbody.mass
-    force = CirclePhysics.G()*(m1*m2)/dist
-  
+    force = (m1*m2)/dist*dist
+    //console.log(force)
     forceVector = direction.normalize().scale(force)
     planet.position.add(forceVector.add(Vector2.left().scale(this.speed)))
     
     planet.draw()
-    planet.drawPath()
+    //planet.drawPath()
     if(dist<sun.radius){
       sun.radius += planet.radius
       planet.collided = true

@@ -1,4 +1,5 @@
 const CANVASCOLOR = "black"
+const zoom = document.getElementById("zoom-slider")
 const bounds ={x:-window.innerWidth,y:-window.innerHeight}
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -8,6 +9,7 @@ ctx.canvas.height = bounds.y*-1;
 ctx.transform(1, 0, 0, -1, 0, canvas.height)
 ctx.translate((bounds.x*-1)/2,(bounds.y*-1)/2)
 ctx.fillStyle = CANVASCOLOR;
+ctx.scale(.1,.1)
 ctx.fillRect(-bounds.x,-bounds.y,canvas.width,canvas.height)
 
 const clearCanvas = () => {

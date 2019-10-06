@@ -5,7 +5,6 @@ class World extends Circle{
     this.text = new Text("sun",new Vector2(x,y+this._radius),10,"red",ctx)
     this.startPosition = [x,y]
     this.positions = [this.startPosition]
-    
   }
   
   get rigidbody(){return this._rigidbody}

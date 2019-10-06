@@ -1,3 +1,5 @@
+
+
 const classes = [
    //new MoveCircle(ctx),
   //new Fireworks(ctx)
@@ -33,6 +35,7 @@ const update = () => {
     clearCanvas()
     window.requestAnimationFrame(update)
     if (classes.length > 0){ 
+      
       classes.forEach(x=>{
         x.update()
       })
@@ -40,8 +43,6 @@ const update = () => {
     }
   }, 1000 / FPS);
 };
-
-
 
 start();
 update();
